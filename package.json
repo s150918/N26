@@ -1,0 +1,22 @@
+{
+  "name": "n27",
+  "version": "1.0.0",
+  "description": "meine Tolle Smartphone- Bank",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://s150918@bitbucket.org/s150918/n27.git"
+  },
+  "author": "Jan",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/s150918/n27#readme"
+}
