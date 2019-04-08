@@ -1,18 +1,10 @@
 class Konto{
     constructor(){
-        this.idKonto
-        this.betrag
-        this.art
+        this.Kontonummer
+        this.Kontoart
     }
 }
 
-let konto = new Konto()
-
-konto.idKonto = "1234"
-konto.betrag = 1000
-konto.art = "Girokonto"
-
-console.log(konto)
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -97,6 +89,7 @@ app.get('/kontoAnlegen',(req, res, next) => {
         // ... dann wird kontoAnlegen.ejs gerendert.
         
         res.render('kontoAnlegen.ejs', {                              
+            meldung : ""
         })
     }else{
         res.render('login.ejs', {                    
@@ -112,13 +105,23 @@ app.post('/kontoAnlegen',(req, res, next) => {
     
     if(idKunde){
         console.log("Kunde ist angemeldet als " + idKunde)
+       
+        let konto = new Konto()
+
+            konto.Kontonummer = req.body.kontonummer
+            konto.Kontoart = req.body.kontoart 
+
+       
         
         // ... dann wird kontoAnlegen.ejs gerendert.
         
         res.render('kontoAnlegen.ejs', {                              
+            meldung : "Das "+konto.Kontoart+"  "+ konto.Kontonummer +" wurde erfolgreich angelegt."
         })
+
     }else{
         res.render('login.ejs', {                    
         })    
     }
 })
+
