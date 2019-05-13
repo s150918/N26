@@ -19,26 +19,21 @@
   <body>
     <header>
       <h1>Konto anlegen</h1>    
-    </header>    
-    
-    <form method="POST" action="/kontoanlegen">
-        <!-- Element, das etwas anzeigt -->
-        <label>Kontonummer</label>
-        <!-- Element vom Typ Text, in das getippt werden kann -->
-        <input type="number" name="kontonummer">
-        <label>Kontoart</label>
-        <!-- Element vom Typ Password, das Eingaben maskiert -->
-        <input type="text" name="kontoart">
-        <!-- Element vom Typ Button, das eine Schaltfläche zeigt -->
+      <nav>      
+        <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>                        
+        <a href="/login">Logout</a>        
+        <a href="/impressum">Impressum</a>        
+        <a href="mailto:stefan.baeumer@berufskolleg-borken.de"> <i class="fa fa-envelope-o"></i></a>
+      </nav>   
+      <br>
+    </header>
+    <form method="POST" action="/kontoAnlegen">
+        <label>Kontonummer:</label>
+        <input type="text" name="kontonummer" pattern="[0-9]{10}" title="Bitte nur Ziffern eingeben!">
+        <label>Kontoart:</label>
+        <input type="text" name="kontoart">        
         <button>Konto anlegen</button>
-      </form>        
-    <label> <%= meldung %></label>
-
-    <nav>      
-      <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>                        
-      <a href="/login">Logout</a>        
-      <a href="/impressum">Impressum</a>        
-      <a href="mailto:stefan.baeumer@berufskolleg-borken.de"> <i class="fa fa-envelope-o"></i></a>
-    </nav>   
+      </form>
+      <label><%= meldung %></label>
   </body>
 </html>

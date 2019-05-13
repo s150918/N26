@@ -6,7 +6,10 @@ class Konto{
 }
 
 
+const bankleitzahl = 2700000
+const laendererkennung = "DE"
 const express = require('express')
+const iban = require ('iban')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const app = express()
@@ -14,6 +17,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser())
+
+
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
@@ -88,8 +93,8 @@ app.get('/kontoAnlegen',(req, res, next) => {
         
         // ... dann wird kontoAnlegen.ejs gerendert.
         
-        res.render('kontoAnlegen.ejs', {                              
-            meldung : ""
+        res.render('kontoAnlegen.ejs', {    
+            meldung : ""                          
         })
     }else{
         res.render('login.ejs', {                    
@@ -97,7 +102,7 @@ app.get('/kontoAnlegen',(req, res, next) => {
     }
 })
 
-// Wenn der Button auf der kontoanlegen-Seite gedrückt wird, ...
+// Wenn der Button auf der kontoAnlegen-Seite gedrückt wird, ...
 
 app.post('/kontoAnlegen',(req, res, next) => {   
 
@@ -105,20 +110,23 @@ app.post('/kontoAnlegen',(req, res, next) => {
     
     if(idKunde){
         console.log("Kunde ist angemeldet als " + idKunde)
-       
+        
         let konto = new Konto()
+        konto.Kontonummer = req.body.kontonummer
+        konto.iban = iban.fromBBAN (laenderkennung,bankleitzahl + " "+konto.Kontonummer)
+        konto.Kontoart = req.body.kontoart
 
-            konto.Kontonummer = req.body.kontonummer
-            konto.Kontoart = req.body.kontoart 
 
-       
-        
-        // ... dann wird kontoAnlegen.ejs gerendert.
-        
+        let bankleitzahl = 12345678
+
+        let errechneteIban = iban.fromBBAN("DE",bankleitzahl + ""+ konto.kontonummer)
+
+        console.log(errechneteIban)
+              
         res.render('kontoAnlegen.ejs', {                              
-            meldung : "Das "+konto.Kontoart+"  "+ konto.Kontonummer +" wurde erfolgreich angelegt."
-        })
+            meldung : "Das " + konto.Kontoart + " Iban " + konto.Kontonummer + " wurde erfolgreich angelegt."
 
+        })
     }else{
         res.render('login.ejs', {                    
         })    
