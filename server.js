@@ -5,6 +5,27 @@ class Konto{
     }
 }
 
+class Kunde {
+    constructor(){
+        this.idKunde
+        this.Kennwort 
+        this.Adresse
+        this.Nachname
+        this.Geschlecht
+        this.Geburtsdatum
+        this.Vorname
+    }
+} 
+ 
+ let kunde = new Kunde ()  
+
+kunde.idKunde = 4711
+kunde.Kennwort = "123"
+kunde.Vorname = "Jan"
+kunde.Adresse = "Bonhoefferstraße 1"
+kunde.Nachname = "Rehmann"
+kunde.Geschlecht = "m"
+kunde.Geburtsdatum = "2002-08-22"
 
 const bankleitzahl = 2700000
 const laendererkennung = "DE"
@@ -68,7 +89,7 @@ app.post('/',(req, res, next) => {
     const idKunde = req.body.idKunde
     const kennwort = req.body.kennwort
         
-    if(idKunde === "4711" && kennwort === "123"){            
+    if(idKunde === kunde.IdKunde && kennwort === kunde.Kennwort){            
         console.log("Der Cookie wird gesetzt:")
         res.cookie('istAngemeldetAls', idKunde)
         res.render('index.ejs', {  
