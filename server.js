@@ -4,10 +4,10 @@ class Konto{
         this.Kontoart
     }
 }
-
+// Klassendefintion
 class Kunde {
     constructor(){
-        this.idKunde
+        this.IdKunde
         this.Kennwort 
         this.Adresse
         this.Nachname
@@ -16,16 +16,17 @@ class Kunde {
         this.Vorname
     }
 } 
- 
+ // Deklaration und Instanzierung
  let kunde = new Kunde ()  
 
-kunde.idKunde = 4711
+ //Initialisierung
+kunde.IdKunde = 4711
 kunde.Kennwort = "123"
-kunde.Vorname = "Jan"
-kunde.Adresse = "Bonhoefferstraße 1"
-kunde.Nachname = "Rehmann"
+kunde.Vorname = "Hildegart"
+kunde.Adresse = "Berlin"
+kunde.Nachname = "Schmidt"
 kunde.Geschlecht = "m"
-kunde.Geburtsdatum = "2002-08-22"
+kunde.Geburtsdatum = "1999-12-31"
 
 const bankleitzahl = 2700000
 const laendererkennung = "DE"
@@ -86,10 +87,16 @@ app.get('/login',(req, res, next) => {
 
 app.post('/',(req, res, next) => {   
     
+// in Zeile 91 Der Wert des Inputs mit dem name = idKunde wird über den Request zugewiesen an die constante IdKunde
+
     const idKunde = req.body.idKunde
     const kennwort = req.body.kennwort
         
-    if(idKunde === kunde.IdKunde && kennwort === kunde.Kennwort){            
+// wenn der Wert von IdKunde dem Wert der Eigenschaft kunde.idKunde entspricht 
+// und der Wert von kennwort dem der Eigenschaft kunde.kennwort
+// enspricht, dann werden die Anweisung im Rumpf der if Kontrollstruktur
+// abgeartbeitet.
+    if(idKunde == kunde.IdKunde && kennwort == kunde.Kennwort){            
         console.log("Der Cookie wird gesetzt:")
         res.cookie('istAngemeldetAls', idKunde)
         res.render('index.ejs', {  
