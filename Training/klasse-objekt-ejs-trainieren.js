@@ -1,77 +1,3 @@
-class Auto {
-    constructor(){
-        this.Raeder
-        this.sitze
-    }
-}
-
-
-// eine Klasse ist ein Bauplan. Der Bauplan sieht vor, wie Objekte erstellt werden. 
-// alle Objekte, die von einem Bauplan erstellt werden, haben dieselben Eigenschaften, aber möglicherweise unterschiedliche Eigenschaftswerte
-// Klassendefinition
-
- class Rechteck{
-     constructor(){
-         this.laenge
-         this.breite
-     }
-}
-
-// Klassendefinition für Schüler in einer Schule:
-
-class Schueler {
-    constructor(){
-        this.geschlecht
-        this.klasse
-        this.alter
-        this.vorname
-        this.nachname
-    }
-}
-
-class Fussballer {
-    constructor(){
-        this.vorname
-        this.nachname
-        this.verein
-        this.vertragslaufzeit
-        this.marktwert
-    }
-}
-
-
-
-
-    //Deklaration eines neuen Objekts vom Typ Rechteck
-    // Deklaration = Bekanntmachung
-    //let rechteck = ...
-    // Instanzierung eines neuen Objektes
-    // Instanzierung erkennt man immer am reservierten Wort new
-    // bei der Instanzierung wird Arbeitsspeicher bereitgestellt. 
-    // ... = new Rechteck()
-    
-// 1. Deklaration  2. Instanzierung  
-    let rechteck = new Rechteck()
-    let schueler = new Schueler()
-    let fussballer = new Fussballer
-   
-    // 3. Initalisierung (konkrete Eigenschaftswerte werden zugewiesen)
-   
-    rechteck.breite = 2
-    rechteck.laenge = 3 
-
-    schueler.geschlecht = "m"
-    schueler.alter = 17
-
-    fussballer.vorname = "Ahmed"
-    fussballer.nachname = "Kutucu"
-    fussballer.verein = "FC Schalke 04"
-    fussballer.vertragslaufzeit = 3
-    fussballer.marktwert = 10
-
- console.log("Länge:" +rechteck.laenge)
-console.log("breite:" +rechteck.breite)
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -83,21 +9,83 @@ const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
 })
 
+// Eine Klasse ist ein Bauplan. Der Bauplan sieht vor, wie Objekte erstellt werden.
+// Alle Objekte, die von einem Bauplan erstellt werden, haben die selben Eigenschaften,
+// aber möglicherweise unterschiedliche Eigenschaftswerte.
+
+// Klassendefintion
+// ================
+
+class Rechteck{
+    constructor(){
+        this.laenge
+        this.breite
+    }
+}
+
+// Klassendefinition für Schüler in einer Schule:
+
+class Schueler{
+    constructor(){
+        this.geschlecht
+        this.klasse
+        this.alter
+        this.vorname
+        this.nachname
+    }
+}
+
+class Fussballer{
+    constructor(){
+        this.vorname 
+        this.nachname
+        this.mannschaft
+        this.geschlecht
+    }
+}
+
+// Deklaration eines neuen Objekts vom Typ Rechteck
+// Deklaration = Bekanntmachung
+// let rechteck = ...
+
+// Instanziierung eines neuen Objekts.
+// Instanziierung erkennt man immer am reservierten Wort "new".
+// Bei der Instanziierung wird Arbeitsspeicher bereitgestellt.
+// ... = new Rechteck()
+
+// 1.Deklaration  2.Instanziierung
+let rechteck = new Rechteck()
+let schueler = new Schueler()
+let fussballer = new Fussballer()
+
+
+// 3. Initialisierung (Konkrete Eingeschaftswerte werden zugewiesen)
+
+rechteck.breite = 2
+rechteck.laenge = 3
+
+schueler.geschlecht = "w"
+schueler.alter = 17
+
+fussballer.mannschaft = "FC Borken"
+fussballer.vorname = "Firke"
+
+console.log("Länge: " + rechteck.laenge)
+console.log("Breite: " + rechteck.breite)
+
+
 // Wenn localhost:3000/klasse-objekt-ejs-trainieren aufgerufen wird ...
 
 app.get('/klasse-objekt-ejs-trainieren',(req, res, next) => {   
 
     // ... wird klasse-objekt-ejs-trainieren.ejs gerendert:
 
-    res.render('klasse-objekt-ejs-trainieren', {   
-        breite : rechteck.breite,   
-        laenge : rechteck.laenge,        
+    res.render('klasse-objekt-ejs-trainieren', {                                      
+        breite : rechteck.breite,
+        laenge : rechteck.laenge,
         geschlecht : schueler.geschlecht,
         alter : schueler.alter,
         vorname : fussballer.vorname,
-        nachname : fussballer.nachname,
-        verein : fussballer.verein,
-        vertragslaufzeit : fussballer.vertragslaufzeit,  
-        marktwert : fussballer.marktwert                   
+        mannschaft : fussballer.mannschaft
     })
 })
